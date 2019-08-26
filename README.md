@@ -60,6 +60,17 @@ libTools.typesToSimpleType(['unwalled.garden/person'], true)
 // => 'people'
 ```
 
+### `simpleTypeToType(simpleType)`
+
+Provides the full type for a given simple type. Can use the plural or singular.
+
+```js
+libTools.typesToSimpleType('person')
+// => 'unwalled.garden/person'
+libTools.typesToSimpleType('people')
+// => 'unwalled.garden/person'
+```
+
 ### `getSimpleTypesArray(usePlural=false)`
 
 Gives an array of the simple types.

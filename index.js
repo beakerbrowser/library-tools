@@ -21,7 +21,6 @@ function getSimple (st, usePlural) {
   return st
 }
 
-const typesToSimpleType =
 exports.typesToSimpleType = function (types, usePlural = false) {
   types = Array.isArray(types) ? types : [types]
   if (types.includes('unwalled.garden/module')) return getSimple('modules', usePlural)
@@ -29,6 +28,11 @@ exports.typesToSimpleType = function (types, usePlural = false) {
   if (types.includes('unwalled.garden/template')) return getSimple('templates', usePlural)
   if (types.includes('unwalled.garden/theme')) return getSimple('themes', usePlural)
   return getSimple('websites', usePlural)
+}
+
+exports.simpleTypeToType = function (simpleType) {
+  simpleType = simpleTypeToPlural(simpleType)
+  return SIMPLE_TYPES[simpleType]
 }
 
 exports.getSimpleTypesArray = function (usePlural = false) {
@@ -43,6 +47,7 @@ exports.getSimpleTypesMap = function (usePlural = false) {
   return map
 }
 
+const simpleTypeToPlural =
 exports.simpleTypeToPlural = function (simpleType) {
   if (SIMPLE_TYPES_S_TO_P[simpleType]) return SIMPLE_TYPES_S_TO_P[simpleType]
   if (simpleType in SIMPLE_TYPES_P_TO_S) return simpleType
