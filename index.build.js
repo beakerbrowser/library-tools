@@ -1,6 +1,6 @@
 const exports = {}
 
-const SIMPLE_TYPES = {
+const CATEGORIES = {
   modules: 'unwalled.garden/module',
   people: 'unwalled.garden/person',
   templates: 'unwalled.garden/template',
@@ -8,7 +8,7 @@ const SIMPLE_TYPES = {
   websites: undefined,
 }
 
-const SIMPLE_TYPES_P_TO_S = {
+const CATEGORIES__P_TO_S = {
   modules: 'module',
   people: 'person',
   templates: 'template',
@@ -16,59 +16,59 @@ const SIMPLE_TYPES_P_TO_S = {
   websites: 'website'
 }
 
-const SIMPLE_TYPES_S_TO_P = Object.assign({}, ...Object.entries(SIMPLE_TYPES_P_TO_S).map(([a,b]) => ({ [b]: a })))
+const CATEGORIES__S_TO_P = Object.assign({}, ...Object.entries(CATEGORIES__P_TO_S).map(([a,b]) => ({ [b]: a })))
 
-function getSimple (st, usePlural) {
-  if (usePlural) return SIMPLE_TYPES_P_TO_S[st]
+function getCat (st, usePlural) {
+  if (usePlural) return CATEGORIES__P_TO_S[st]
   return st
 }
 
-exports.typesToSimpleType = function (types, usePlural = false) {
-  types = Array.isArray(types) ? types : [types]
-  if (types.includes('unwalled.garden/module')) return getSimple('modules', usePlural)
-  if (types.includes('unwalled.garden/person')) return getSimple('people', usePlural)
-  if (types.includes('unwalled.garden/template')) return getSimple('templates', usePlural)
-  if (types.includes('unwalled.garden/theme')) return getSimple('themes', usePlural)
-  return getSimple('websites', usePlural)
+exports.typeToCategory = function (type, usePlural = false) {
+  type = Array.isArray(type) ? type : [type]
+  if (type.includes('unwalled.garden/module')) return getCat('modules', usePlural)
+  if (type.includes('unwalled.garden/person')) return getCat('people', usePlural)
+  if (type.includes('unwalled.garden/template')) return getCat('templates', usePlural)
+  if (type.includes('unwalled.garden/theme')) return getCat('themes', usePlural)
+  return getCat('websites', usePlural)
 }
 
-exports.simpleTypeToType = function (simpleType) {
-  simpleType = simpleTypeToPlural(simpleType)
-  return SIMPLE_TYPES[simpleType]
+exports.categoryToType = function (category) {
+  category = categoryToPlural(category)
+  return CATEGORIES[category]
 }
 
-exports.getSimpleTypesArray = function (usePlural = false) {
-  return Object.keys(SIMPLE_TYPES).map(st => getSimple(st, usePlural))
+exports.getCategoriesArray = function (usePlural = false) {
+  return Object.keys(CATEGORIES).map(st => getCat(st, usePlural))
 }
 
-exports.getSimpleTypesMap = function (usePlural = false) {
+exports.getCategoriesMap = function (usePlural = false) {
   var map = {}
-  for (let st in SIMPLE_TYPES) {
-    map[getSimple(st)] = SIMPLE_TYPES[st]
+  for (let st in CATEGORIES) {
+    map[getCat(st)] = CATEGORIES[st]
   }
   return map
 }
 
-const simpleTypeToPlural =
-exports.simpleTypeToPlural = function (simpleType) {
-  if (SIMPLE_TYPES_S_TO_P[simpleType]) return SIMPLE_TYPES_S_TO_P[simpleType]
-  if (simpleType in SIMPLE_TYPES_P_TO_S) return simpleType
+const categoryToPlural =
+exports.categoryToPlural = function (category) {
+  if (CATEGORIES__S_TO_P[category]) return CATEGORIES__S_TO_P[category]
+  if (category in CATEGORIES__P_TO_S) return category
   return 'websites'
 }
 
-const simpleTypeToSingular =
-exports.simpleTypeToSingular = function (simpleType) {
-  if (SIMPLE_TYPES_P_TO_S[simpleType]) return SIMPLE_TYPES_P_TO_S[simpleType]
-  if (simpleType in SIMPLE_TYPES_S_TO_P) return simpleType
+const categoryToSingular =
+exports.categoryToSingular = function (category) {
+  if (CATEGORIES__P_TO_S[category]) return CATEGORIES__P_TO_S[category]
+  if (category in CATEGORIES__S_TO_P) return category
   return 'website'
 }
 
-exports.getFAIcon = function (simpleType) {
-  simpleType = simpleTypeToSingular(simpleType)
-  if (simpleType === 'module') return 'fas fa-cube'
-  if (simpleType === 'person') return 'far fa-user'
-  if (simpleType === 'template') return 'fas fa-pencil-ruler'
-  if (simpleType === 'theme') return 'fas fa-drafting-compass'
+exports.getFAIcon = function (category) {
+  category = categoryToSingular(category)
+  if (category === 'module') return 'fas fa-cube'
+  if (category === 'person') return 'far fa-user'
+  if (category === 'template') return 'fas fa-pencil-ruler'
+  if (category === 'theme') return 'fas fa-drafting-compass'
   return 'fas fa-sitemap'
 }
 

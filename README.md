@@ -39,62 +39,62 @@ The `library.json` file is the primary record of the "saved dats." It lists save
 
 The json-schema for library.json [can be found here](./library.json).
 
-## "Simple Types"
+## "Categories"
 
-Dat archives provide a `"type"` field in their manifests. The "simple type" is a shortname mapping to those full types.
+Dat archives provide a `type` field in their manifests. The "category" is a shortname mapping to those full types.
 
-If multiple types are set on a dat, the first known type is used to determine the simple type.
+If multiple types are set on a dat, the first known type is used to determine the category.
 
-The "website" simple type is catchall for dats with an unknown type.
+The "website" category is catchall for dats with an unknown type.
 
 ## API
 
-### `typesToSimpleType(types, usePlural=false)`
+### `typeToCategory(type, usePlural=false)`
 
-Provides the "simple type" for a given manifest's full type value.
+Provides the category for a given manifest's full type value.
 
 ```js
-libTools.typesToSimpleType(['unwalled.garden/person'], false)
+libTools.typeToCategory('unwalled.garden/person', false)
 // => 'person'
-libTools.typesToSimpleType(['unwalled.garden/person'], true)
+libTools.typeToCategory('unwalled.garden/person', true)
 // => 'people'
 ```
 
-### `simpleTypeToType(simpleType)`
+### `categoryToType(category)`
 
-Provides the full type for a given simple type. Can use the plural or singular.
+Provides the full type for a given category. Can use the plural or singular.
 
 ```js
-libTools.typesToSimpleType('person')
+libTools.categoryToType('person')
 // => 'unwalled.garden/person'
-libTools.typesToSimpleType('people')
+libTools.categoryToType('people')
 // => 'unwalled.garden/person'
 ```
 
-### `getSimpleTypesArray(usePlural=false)`
+### `getCategoriesArray(usePlural=false)`
 
-Gives an array of the simple types.
+Gives an array of the categories.
 
 ```js
-libTools.getSimpleTypesArray(false)
+libTools.getCategoriesArray(false)
 // => ['module', 'person', 'template', 'website']
-libTools.getSimpleTypesArray(true)
+libTools.getCategoriesArray(true)
 // => ['modules', 'people', 'templates', 'websites']
 ```
 
-### `getSimpleTypesMap(usePlural=false)`
+### `getCategoriesMap(usePlural=false)`
 
-Gives a map of the simple types to their fully-qualified types.
+Gives a map of the categories to their fully-qualified types.
 
 ```js
-libTools.getSimpleTypesMap(false)
+libTools.getCategoriesMap(false)
 /* => {
   module: 'unwalled.garden/module',
   person: 'unwalled.garden/person',
   template: 'unwalled.garden/template',
   website: undefined
 } */
-libTools.getSimpleTypesMap(true)
+libTools.getCategoriesMap(true)
 /* => {
   modules: 'unwalled.garden/module',
   people: 'unwalled.garden/person',
@@ -103,27 +103,27 @@ libTools.getSimpleTypesMap(true)
 } */
 ```
 
-### `simpleTypeToPlural(simpleType)`
+### `categoryToPlural(category)`
 
-Convert a simple type to its plural.
+Convert a category to its plural.
 
 ```js
-libTools.simpleTypeToPlural('person')
+libTools.categoryToPlural('person')
 // => 'people'
 ```
 
-### `simpleTypeToSingular(simpleType)`
+### `categoryToSingular(category)`
 
-Convert a simple type to its singular.
+Convert a category to its singular.
 
 ```js
-libTools.simpleTypeToSingular('people')
+libTools.categoryToSingular('people')
 // => 'person'
 ```
 
-### `getFAIcon(simpleType)`
+### `getFAIcon(category)`
 
-Gets the Font Awesome icon for a given simple type.
+Gets the Font Awesome icon for a given category.
 
 ```js
 libTools.getFAIcon('module')
