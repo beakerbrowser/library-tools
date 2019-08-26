@@ -25,13 +25,13 @@ The `library.json` file is the primary record of the "saved dats." It lists save
       "key": "9892414902579ba93ae62e63d5041b69b137f2aa9e86a4e2bc1bcef70ab6d569",
       "isHosting": true,
       "visibility": "public",
-      "createdAt": "2019-08-26T15:02:03.623Z"
+      "savedAt": "2019-08-26T15:02:03.623Z"
     },
     {
       "key": "206bf21c61a8c65e3fb1463d6d9b8231dc2726e795009139747a9152f47bb8f7",
       "isHosting": true,
       "visibility": "unlisted",
-      "createdAt": "2019-08-26T15:02:03.623Z"
+      "savedAt": "2019-08-26T15:02:03.623Z"
     }
   ]
 }
