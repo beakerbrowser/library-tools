@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "dat://beakerbrowser.com/library.json",
+  "type": "object",
+  "title": "Library",
+  "required": [
+    "type",
+    "dats"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The object's type",
+      "const": "beakerbrowser.com/library"
+    },
+    "dats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "createdAt"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          },
+          "isHosting": {
+            "type": "boolean"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": ["unlisted", "public"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}
