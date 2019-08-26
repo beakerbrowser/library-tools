@@ -19,8 +19,8 @@ const CATEGORIES__P_TO_S = {
 const CATEGORIES__S_TO_P = Object.assign({}, ...Object.entries(CATEGORIES__P_TO_S).map(([a,b]) => ({ [b]: a })))
 
 function getCat (st, usePlural) {
-  if (usePlural) return CATEGORIES__P_TO_S[st]
-  return st
+  if (usePlural) return CATEGORIES__S_TO_P[st] || st
+  return CATEGORIES__P_TO_S[st] || st
 }
 
 exports.typeToCategory = function (type, usePlural = false) {
@@ -44,7 +44,7 @@ exports.getCategoriesArray = function (usePlural = false) {
 exports.getCategoriesMap = function (usePlural = false) {
   var map = {}
   for (let st in CATEGORIES) {
-    map[getCat(st)] = CATEGORIES[st]
+    map[getCat(st, usePlural)] = CATEGORIES[st]
   }
   return map
 }
