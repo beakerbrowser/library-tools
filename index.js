@@ -3,7 +3,7 @@ const CATEGORIES = {
   people: 'unwalled.garden/person',
   templates: 'unwalled.garden/template',
   themes: 'unwalled.garden/theme',
-  websites: undefined,
+  websites: 'unwalled.garden/website',
 }
 
 const CATEGORIES__P_TO_S = {
