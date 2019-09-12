@@ -22,11 +22,11 @@ function getCat (st, usePlural) {
 }
 
 exports.typeToCategory = function (type, usePlural = false) {
-  type = Array.isArray(type) ? type : [type]
-  if (type.includes('unwalled.garden/module')) return getCat('modules', usePlural)
-  if (type.includes('unwalled.garden/person')) return getCat('people', usePlural)
-  if (type.includes('unwalled.garden/template')) return getCat('templates', usePlural)
-  if (type.includes('unwalled.garden/theme')) return getCat('themes', usePlural)
+  type = Array.isArray(type) ? type[0] : type
+  if (type === 'unwalled.garden/module') return getCat('modules', usePlural)
+  if (type === 'unwalled.garden/person') return getCat('people', usePlural)
+  if (type === 'unwalled.garden/template') return getCat('templates', usePlural)
+  if (type === 'unwalled.garden/theme') return getCat('themes', usePlural)
   return getCat('websites', usePlural)
 }
 
