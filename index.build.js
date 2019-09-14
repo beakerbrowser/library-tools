@@ -29,7 +29,8 @@ exports.typeToCategory = function (type, usePlural = false) {
   if (type === 'unwalled.garden/person') return getCat('people', usePlural)
   if (type === 'unwalled.garden/template') return getCat('templates', usePlural)
   if (type === 'unwalled.garden/theme') return getCat('themes', usePlural)
-  return getCat('websites', usePlural)
+  if (type === 'unwalled.garden/website') return getCat('websites', usePlural)
+  return undefined
 }
 
 exports.categoryToType = function (category) {
@@ -53,14 +54,14 @@ const categoryToPlural =
 exports.categoryToPlural = function (category) {
   if (CATEGORIES__S_TO_P[category]) return CATEGORIES__S_TO_P[category]
   if (category in CATEGORIES__P_TO_S) return category
-  return 'websites'
+  return undefined
 }
 
 const categoryToSingular =
 exports.categoryToSingular = function (category) {
   if (CATEGORIES__P_TO_S[category]) return CATEGORIES__P_TO_S[category]
   if (category in CATEGORIES__S_TO_P) return category
-  return 'website'
+  return undefined
 }
 
 exports.getFAIcon = function (category) {
@@ -69,7 +70,8 @@ exports.getFAIcon = function (category) {
   if (category === 'person') return 'far fa-user'
   if (category === 'template') return 'fas fa-pencil-ruler'
   if (category === 'theme') return 'fas fa-drafting-compass'
-  return 'fas fa-sitemap'
+  if (category === 'website') return 'far fa-file-alt'
+  return 'fas fa-archive'
 }
 
 export default exports
