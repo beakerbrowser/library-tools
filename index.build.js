@@ -1,18 +1,16 @@
 const exports = {}
 
 const CATEGORIES = {
+  commands: 'unwalled.garden/command-package',
   modules: 'unwalled.garden/module',
   people: 'unwalled.garden/person',
-  templates: 'unwalled.garden/template',
-  themes: 'unwalled.garden/theme',
   websites: 'unwalled.garden/website',
 }
 
 const CATEGORIES__P_TO_S = {
+  commands: 'command',
   modules: 'module',
   people: 'person',
-  templates: 'template',
-  themes: 'theme',
   websites: 'website'
 }
 
@@ -25,10 +23,9 @@ function getCat (st, usePlural) {
 
 exports.typeToCategory = function (type, usePlural = false) {
   type = Array.isArray(type) ? type[0] : type
+  if (type === 'unwalled.garden/command-package') return getCat('commands', usePlural)
   if (type === 'unwalled.garden/module') return getCat('modules', usePlural)
   if (type === 'unwalled.garden/person') return getCat('people', usePlural)
-  if (type === 'unwalled.garden/template') return getCat('templates', usePlural)
-  if (type === 'unwalled.garden/theme') return getCat('themes', usePlural)
   if (type === 'unwalled.garden/website') return getCat('websites', usePlural)
   return undefined
 }
@@ -66,10 +63,9 @@ exports.categoryToSingular = function (category) {
 
 exports.getFAIcon = function (category) {
   category = categoryToSingular(category)
+  if (category === 'command') return 'fas fa-terminal'
   if (category === 'module') return 'fas fa-cube'
   if (category === 'person') return 'far fa-user'
-  if (category === 'template') return 'fas fa-pencil-ruler'
-  if (category === 'theme') return 'fas fa-drafting-compass'
   if (category === 'website') return 'far fa-file-alt'
   return 'fas fa-archive'
 }
